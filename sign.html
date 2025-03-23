@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轩轩的OJ - 登录/注册</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>轩轩的OJ - 登录/注册</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="contest.html">比赛</a></li>
+                <li><a href="problems.html">题库</a></li>
+                <li><a href="sign.html">登录/注册</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>登录</h2>
+            <form id="login-form">
+                <label for="login-username">用户名:</label>
+                <input type="text" id="login-username" name="username" required>
+                <label for="login-password">密码:</label>
+                <input type="password" id="login-password" name="password" required>
+                <button type="submit">登录</button>
+            </form>
+            <p id="login-message"></p>
+        </section>
+        <section>
+            <h2>注册</h2>
+            <form id="register-form">
+                <label for="username">用户名:</label>
+                <input type="text" id="username" name="username" required>
+                <label for="password">密码:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">注册</button>
+            </form>
+            <p id="register-message"></p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 轩轩的OJ</p>
+    </footer>
+
+    <script>
+        // 注册功能
+        document.getElementById('register-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // 阻止表单默认提交行为
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // 检查用户名是否已存在
+            if (localStorage.getItem(username)) {
+                document.getElementById('register-message').textContent = '用户名已存在！';
+                return;
+            }
+
+            // 存储账号密码到 localStorage
+            localStorage.setItem(username, password);
+            document.getElementById('register-message').textContent = '注册成功！';
+            document.getElementById('register-form').reset(); // 清空表单
+        });
+
+        // 登录功能
+        document.getElementById('login-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // 阻止表单默认提交行为
+
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+
+            // 检查用户名和密码是否匹配
+            const storedPassword = localStorage.getItem(username);
+            if (storedPassword === password) {
+                document.getElementById('login-message').textContent = '登录成功！';
+                localStorage.setItem('isLoggedIn', 'true'); // 设置登录状态
+                localStorage.setItem('currentUser', username); // 存储当前用户
+
+                // 如果是管理员，设置管理员标志
+                if (username === 'admin') {
+                    localStorage.setItem('isAdmin', 'true');
+                }
+
+                // 设置默认头像
+                const avatarUrl = `https://ui-avatars.com/api/?name=${username}&background=random&size=50`;
+                localStorage.setItem('avatarUrl', avatarUrl);
+
+                setTimeout(() => {
+                    window.location.href = 'index.html'; // 跳转到首页
+                }, 1000); // 1秒后跳转
+            } else {
+                document.getElementById('login-message').textContent = '用户名或密码错误！';
+            }
+            document.getElementById('login-form').reset(); // 清空表单
+        });
+    </script>
+</body>
+</html>

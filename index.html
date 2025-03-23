@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轩轩的OJ - 首页</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>轩轩的OJ</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="contest.html">比赛</a></li>
+                <li><a href="problems.html">题库</a></li>
+                <li id="user-info" style="display: none;">
+                    <img id="user-avatar" src="" alt="头像" class="avatar">
+                    <span id="username"></span>
+                </li>
+                <li id="login-link"><a href="sign.html">登录/注册</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <!-- 欢迎标语 -->
+        <section class="welcome-section">
+            <h1>欢迎来到轩轩的OJ</h1>
+            <p>这是一个在线编程练习平台，提供丰富的题目和比赛，帮助你提升编程能力！</p>
+        </section>
+
+        <!-- 最新公告 -->
+        <section class="announcement-section">
+            <h2>最新公告</h2>
+            <ul>
+                <li>2023-10-01: 新增“两数之和”题目。</li>
+                <li>2023-09-30: 平台用户数突破1000人！</li>
+                <li>2023-09-25: 国庆节期间将举办编程马拉松比赛。</li>
+            </ul>
+        </section>
+
+        <!-- 热门题目 -->
+        <section class="problem-section">
+            <h2>热门题目</h2>
+            <div class="problem-card">
+                <h3>问题1: 两数之和</h3>
+                <p>给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。</p>
+                <button onclick="viewProblem(1)">查看详情</button>
+                <button onclick="submitCode(1)">提交代码</button>
+            </div>
+            <div class="problem-card">
+                <h3>问题2: 反转链表</h3>
+                <p>反转一个单链表。</p>
+                <button onclick="viewProblem(2)">查看详情</button>
+                <button onclick="submitCode(2)">提交代码</button>
+            </div>
+            <div class="problem-card">
+                <h3>问题3: 二叉树遍历</h3>
+                <p>实现二叉树的前序、中序和后序遍历。</p>
+                <button onclick="viewProblem(3)">查看详情</button>
+                <button onclick="submitCode(3)">提交代码</button>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 轩轩的OJ</p>
+    </footer>
+
+    <script>
+        // 检查登录状态
+        const isLoggedIn = localStorage.getItem('isLoggedIn');
+        if (!isLoggedIn || isLoggedIn !== 'true') {
+            alert('请先登录！');
+            window.location.href = 'sign.html'; // 重定向到登录页面
+        }
+
+        // 更新导航栏
+        const currentUser = localStorage.getItem('currentUser');
+        const avatarUrl = localStorage.getItem('avatarUrl');
+        if (currentUser) {
+            // 隐藏登录链接
+            document.getElementById('login-link').style.display = 'none';
+
+            // 显示用户信息
+            document.getElementById('user-info').style.display = 'block';
+            document.getElementById('username').textContent = currentUser;
+            document.getElementById('user-avatar').src = avatarUrl;
+        }
+    </script>
+</body>
+</html>

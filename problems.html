@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轩轩的OJ - 题库</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .problem-card {
+            margin-bottom: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .problem-card h3 {
+            margin-bottom: 15px;
+        }
+        .problem-card button {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">轩轩的OJ</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contest.html">比赛</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="problems.html">题库</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sign.html">登录/注册</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">题库</h1>
+        <div id="problem-list">
+            <!-- 题目卡片 -->
+            <div class="problem-card">
+                <h3>问题1: 两数之和</h3>
+                <p>给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。</p>
+                <button class="btn btn-primary" onclick="viewProblem(1)">查看详情</button>
+                <button class="btn btn-success" onclick="submitCode(1)">提交代码</button>
+            </div>
+            <div class="problem-card">
+                <h3>问题2: 反转链表</h3>
+                <p>反转一个单链表。</p>
+                <button class="btn btn-primary" onclick="viewProblem(2)">查看详情</button>
+                <button class="btn btn-success" onclick="submitCode(2)">提交代码</button>
+            </div>
+            <div class="problem-card">
+                <h3>问题3: 二叉树遍历</h3>
+                <p>实现二叉树的前序、中序和后序遍历。</p>
+                <button class="btn btn-primary" onclick="viewProblem(3)">查看详情</button>
+                <button class="btn btn-success" onclick="submitCode(3)">提交代码</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 检查登录状态
+        const isLoggedIn = localStorage.getItem('isLoggedIn');
+        if (!isLoggedIn || isLoggedIn !== 'true') {
+            alert('请先登录！');
+            window.location.href = 'sign.html'; // 重定向到登录页面
+        }
+
+        // 查看题目详情
+        function viewProblem(problemId) {
+            alert(`查看问题 ${problemId} 的详情`);
+            // 这里可以跳转到题目详情页面
+        }
+
+        // 提交代码
+        function submitCode(problemId) {
+            alert(`提交问题 ${problemId} 的代码`);
+            // 这里可以跳转到代码提交页面
+        }
+    </script>
+</body>
+</html>
